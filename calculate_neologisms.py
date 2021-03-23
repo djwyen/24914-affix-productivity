@@ -46,6 +46,7 @@ def calculate_neologisms(affix: str):
     english_vocab = set(w.lower() for w in nltk.corpus.words.words())
 
     year_to_neologisms = {}
+    all_neologisms = set() # record all seen neologisms so we can tell the first instance of a neologism
 
     def base_plausible(word: str):
         # checks I want to implement:
@@ -69,7 +70,7 @@ def calculate_neologisms(affix: str):
 
     def count_neologisms(file: str):
         neologism_count = 0
-        neologisms = set()
+        neologisms = set() # neologisms that first appear in this year
         with open(file, 'r') as f:
             # replace null characters, which mess up the analysis. In COHA, a truly novel form has the null character listed as its lemma.
             # also remove periods, which could end word boundaries but sometimes got absorbed by the OCR
@@ -82,8 +83,9 @@ def calculate_neologisms(affix: str):
                 lemma = line[1]
                 if lemma not in english_vocab:
                     # we check to see if this is truly a neologism and not just an OCR error by checking if its base (plus minor modifications) is a real word
-                    if base_plausible(word) and word not in neologisms:
+                    if base_plausible(word) and word not in all_neologisms:
                         neologism_count += 1
+                        all_neologisms.add(word)
                         neologisms.add(word)
         print('found %d neologisms' % neologism_count)
         print(list(x for x in neologisms))
