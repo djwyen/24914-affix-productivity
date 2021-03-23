@@ -81,8 +81,8 @@ def calculate_neologisms(affix: str):
                 # the column that used to be the word now has a colon in it due to using grep, so we filter out the file origin so we extract just the word:
                 word = line[0].split(':', 1)[1]
                 lemma = line[1]
-                # if the word has no lemma then it was deemed to be an OCR error so we throw it out
-                if lemma != '' and lemma not in english_vocab:
+                # You can add the clause and lemma != '' to filter out some words that were deemed OCR errors (and not given a lemma) but this judgment seems slightly overzealous and removes words like 'kittenishness (1977)' that I think are valid  
+                if lemma not in english_vocab:
                     # we check to see if this is truly a neologism and not just an OCR error by checking if its base (plus minor modifications) is a real word
                     if base_plausible(word) and word not in all_neologisms:
                         neologism_count += 1
