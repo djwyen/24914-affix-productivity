@@ -22,6 +22,7 @@ import json
 
 # will take only the relevant affixed words and put them into files by year. This folder will contain those processed files.
 os.system('mkdir data/compiled_wlp')
+os.system('mkdir data/recorded_neologisms')
 
 affixes = ['ity', 'ness']
 years = list(range(1975, 2006))
@@ -86,9 +87,15 @@ def calculate_neologisms(affix: str):
                     # we check to see if this is truly a neologism and not just an OCR error by checking if its base (plus minor modifications) is a real word
                     if base_plausible(word):
                         neologism_count += 1
-                        neologisms.append(line)
+                        neologisms.append(word)
         print('found %d neologisms' % neologism_count)
-        print(list(x[0] for x in neologisms[:10]))
+        print(list(x for x in neologisms[:10]))
+
+        # save the neologisms for future inspection
+        filename = 'data/recorded_neologisms/' + file.split('/', 2)[2].split('.', 1)[0] + '_neologisms.json'
+        with open(filename, 'w+') as f:
+            json.dump(neologisms, f)
+
         return neologism_count
 
     for year in years:
