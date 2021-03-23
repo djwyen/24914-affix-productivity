@@ -1,5 +1,4 @@
 import nltk
-# import pandas as pd
 import csv
 import os
 import json
@@ -29,7 +28,9 @@ def calculate_wc():
     # grep all the relevant words to put them into single files per affix; calculate the word counts for each year
     for affix in affixes:
         for year in years:
-            regex = affix + '\\>'
+            # not using word boundary like \b or \> since that can pick up hyphenated words (security-minded) and trailing periods, among others. The columns are tab-separated so \t works well to detect actual end-of-word.
+            # the double alphabetical character is to filter out four letter words like 'city' and 'pity', because apparently each letter of the alphabet is in the nltk vocabulary. I think it's fine to assume the smallest affixable word is two letters (could probably even go higher honestly)
+            regex = '[a-zA-Z][a-z]' + affix + '\\t'
             search_file = 'data/COHA_zips/*/*_' + str(year) + '_*.txt'
             output_file = 'data/compiled_wlp/' + affix + '_' + str(year) + '.txt'
             filter_command = f'grep -aE \'{regex}\' {search_file} > {output_file}'
