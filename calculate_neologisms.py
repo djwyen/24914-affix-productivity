@@ -4,6 +4,10 @@ import csv
 import os
 import json
 
+affixes = ['ity', 'ness']
+years = list(range(1975, 2006))
+year_to_wc = {}
+
 # filter_command
 # grep -aE 'ity\>' *_1980_*.txt > ity_1980w.txt
 
@@ -19,14 +23,6 @@ import json
 #     os.system('for f in data/COHA_zips/*/*; do mv \"$f\" data/COHA_collated; done')
 #     os.system('mkdir data/compiled_wlp')
 # compile_coha()
-
-# will take only the relevant affixed words and put them into files by year. This folder will contain those processed files.
-os.system('mkdir data/compiled_wlp')
-os.system('mkdir data/recorded_neologisms')
-
-affixes = ['ity', 'ness']
-years = list(range(1975, 2006))
-year_to_wc = {}
 
 def calculate_wc():
     '''Populates year_to_wc with the word count for each year'''
@@ -104,6 +100,9 @@ def calculate_neologisms(affix: str):
         year_to_neologisms[year] = count
     return year_to_neologisms
 
+# will take only the relevant affixed words and put them into files by year. This folder will contain those processed files.
+os.system('mkdir data/compiled_wlp')
+os.system('mkdir data/recorded_neologisms')
 
 calculate_wc()
 # serialize for later
