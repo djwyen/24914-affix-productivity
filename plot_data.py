@@ -25,10 +25,10 @@ slope1, b1 = np.polyfit(years, ness_percent_neologisms, 1)
 slope2, b2 = np.polyfit(years, ity_percent_neologisms, 1)
 # convert to np arrays
 
-plt.plot(years, ness_percent_neologisms, 'ro')
-plt.plot(years, ity_percent_neologisms, 'bo')
-plt.plot(years, (years*slope1 + b1), 'red')
-plt.plot(years, (years*slope2 + b2), 'blue')
+plt.plot(years, ness_percent_neologisms, 'C0o')
+plt.plot(years, ity_percent_neologisms, 'C1o')
+plt.plot(years, (years*slope1 + b1), 'C0')
+plt.plot(years, (years*slope2 + b2), 'C1')
 plt.legend(['-ness', '-ity'])
 plt.title('% neologisms per year')
 plt.xlabel('Year')
@@ -37,8 +37,8 @@ plt.show()
 
 # we can also plot the actual # of neologisms per year. Of course, be wary that each year has a different number of documents, and therefore words, in it.
 width = .4
-plt.bar(years - (width / 2), ness_neologisms, width=width, label='-ness')
-plt.bar(years + (width / 2), ity_neologisms, width=width, label='-ity')
+plt.bar(years - (width / 2), ness_neologisms, width=width, label='-ness', color='C0')
+plt.bar(years + (width / 2), ity_neologisms, width=width, label='-ity', color='C1')
 max_neologisms = max(max(ness_neologisms), max(ity_neologisms))
 plt.yticks(range(0, max_neologisms + 1, 2))
 # plt.xticks(years + width / 2)
