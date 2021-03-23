@@ -39,7 +39,8 @@ plt.show()
 width = .4
 plt.bar(years - (width / 2), ness_neologisms, width=width, label='-ness')
 plt.bar(years + (width / 2), ity_neologisms, width=width, label='-ity')
-
+max_neologisms = max(max(ness_neologisms), max(ity_neologisms))
+plt.yticks(range(0, max_neologisms + 1, 2))
 # plt.xticks(years + width / 2)
 plt.legend(loc='best')
 plt.title('Number of neologisms per year')
