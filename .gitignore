@@ -1,4 +1,6 @@
 .vscode
 .DS_Store
-data
-*.json
+data/COHA_zips
+data/compiled_wlp
+data/old_noisy
+data/alternative_analyses
