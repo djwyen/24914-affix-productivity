@@ -16,5 +16,7 @@ My analysis does not replicate Baayen and Renouf's result. I actually find that 
 
 ## Usage
 First, download the COHA corpus on the desired decade ranges, specifically the zipped word-lemma-part of speech (wlp) files. Put the unzipped folders into a folder `data/COHA_zips`.
+
 Next, edit the variables at the top of `calculate_neologisms.py` to your desired suffixes and year ranges. (Untested beyond the default; current regex is specifically for suffixes.)
+
 Run `python3 calculate_neologisms.py` to locate and count the neologisms; they will appear as .json files in the root folder and in `data/recorded_neologisms`. One can then manually inspect the results or run `python3 plot_data` to plot them, although the current plotting setup is hardcoded for *-ness*/*-ity*.
