@@ -8,7 +8,7 @@ This result struck me as unintuitive, especially given the short timespan, so I 
 
 
 ## Results
-My analysis is slightly different than Baayen and Renouf's in that I analyze by year, and not by chunks of tokens. Each year in COHA has a different total number of words and isn't dated finer than the year timescale, so this analysis was not possible. As a result, I instead normalize by dividing the count for each year by the total number of words in that year. I plot my results below.
+My analysis is slightly different than Baayen and Renouf's in that I analyze by year instead of by chunks of tokens. Each year in COHA has a different total number of words and isn't dated finer than the year timescale, so their chunk-based analysis was not possible. As a result, I instead normalize by dividing the count for each year by the total number of words in that year. I plot my results below.
 ![Plot of % neologisms over time](Figure_1.png)
 ![Plot of # of neologisms over time](Figure_2.png)
 My analysis does not replicate Baayen and Renouf's result. While I also find that *-ness* is more productive than *-ity*, the discrepancy is not as large as that found by Baayen and Renouf. Furthermore, we do not observe the increasing productivity of *-ness* in the time period from 1989-1992.
