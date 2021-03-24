@@ -13,10 +13,12 @@ My analysis is slightly different than Baayen and Renouf's in that I analyze by 
 ![Plot of # of neologisms over time](Figure_2.png)
 My analysis does not replicate Baayen and Renouf's result. While I also find that *-ness* is more productive than *-ity*, the discrepancy is not as large as that found by Baayen and Renouf. Furthermore, we do not observe the increasing productivity of *-ness* in the time period from 1989-1992.
 
+One can also read the neologisms my script identified by browsing the .json files: there are some mistakes, but most of them are legitimate. The tokenizer used for COHA signals that it thinks a word is an OCR error by not giving that word a lemma; but I found that throwing out all lemmaless words would overzealously discard legitimate instances of productivity too. I chose to keep these words since neologisms are so rare to begin with, but this choice does admit some OCR errors.
+
 
 ## Usage
 First, download the COHA corpus on the desired decade ranges, specifically the zipped word-lemma-part of speech (wlp) files. Put the unzipped folders into a folder `data/COHA_zips`.
 
 Next, edit the variables at the top of `calculate_neologisms.py` to your desired suffixes and year ranges. (Untested beyond the default; current regex is specifically for suffixes.)
 
-Run `python3 calculate_neologisms.py` to locate and count the neologisms; they will appear as .json files in the root folder and in `data/recorded_neologisms`. One can then manually inspect the results or run `python3 plot_data` to plot them, although the current plotting setup is hardcoded for *-ness*/*-ity*.
+Run `python3 calculate_neologisms.py` to locate and count the neologisms; they will appear as .json files in the root folder and in `data/recorded_neologisms`. One can then manually inspect the results or run `python3 plot_data` to plot them, although the current plotting setup is hardcoded for *-ness/-ity*.
